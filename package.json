@@ -1,0 +1,8 @@
+{
+    "version": "0.1.0",
+    "name": "buster-www",
+    "dependencies": {
+        "mime": "~1.2",
+        "ejs": "~0.6"
+    }
+}
