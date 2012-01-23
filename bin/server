@@ -20,12 +20,17 @@ function serveFile(path, res) {
     });
 }
 
-function serveTemplate(path, res) {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    fs.readFile(path, function (err, data) {
-        res.write(renderTemplate(data.toString("utf8")));
+function serveTemplate(path, pathname, res) {
+    if (pathname.slice(pathname.length - 1) == "/") {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        fs.readFile(path, function (err, data) {
+            res.write(renderTemplate(data.toString("utf8")));
         res.end();
-    });
+        });
+    } else {
+        res.writeHead(301, {"Location": pathname + "/"});
+        res.end();
+    }
 }
 
 function renderTemplate(content) {
@@ -51,14 +56,14 @@ http.createServer(function (req, res) {
                         if (err || !stat.isFile()) {
                             notFound(res);
                         } else {
-                            serveTemplate(indexHtmlPath, res);
+                            serveTemplate(indexHtmlPath, u.pathname, res);
                         }
                     });
                 } else {
-                    var templatePath = dirPath + ".html";
+                    var templatePath = dirPath.slice(0, dirPath.length - 1) + ".html";
                     fs.stat(templatePath, function (err, stat) {
                         if (!err && stat.isFile()) {
-                            serveTemplate(templatePath, res);
+                            serveTemplate(templatePath, u.pathname, res);
                         } else {
                             notFound(res);
                         }
