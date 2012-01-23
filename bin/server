@@ -43,12 +43,10 @@ http.createServer(function (req, res) {
     var pubFilePath = path.join(PUBLIC, u.pathname);
     fs.stat(pubFilePath, function (err, stat) {
         if (err || !stat.isFile()) {
-            var templatePath = path.join(SITE, u.pathname);
-            fs.stat(templatePath, function (err, stat) {
-                if (err) {
-                    notFound(res);
-                } else if (stat.isDirectory()) {
-                    var indexHtmlPath = path.join(templatePath, "index.html");
+            var dirPath = path.join(SITE, u.pathname);
+            fs.stat(dirPath, function (err, stat) {
+                if (!err && stat.isDirectory()) {
+                    var indexHtmlPath = path.join(dirPath, "index.html");
                     fs.stat(indexHtmlPath, function (err, stat) {
                         if (err || !stat.isFile()) {
                             notFound(res);
@@ -56,10 +54,15 @@ http.createServer(function (req, res) {
                             serveTemplate(indexHtmlPath, res);
                         }
                     });
-                } else if (stat.isFile()) {
-                    serveTemplate(templatePath, res);
                 } else {
-                    notFound(res);
+                    var templatePath = dirPath + ".html";
+                    fs.stat(templatePath, function (err, stat) {
+                        if (!err && stat.isFile()) {
+                            serveTemplate(templatePath, res);
+                        } else {
+                            notFound(res);
+                        }
+                    });
                 }
             });
         } else {
