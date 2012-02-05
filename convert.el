@@ -16,28 +16,35 @@
              (point))))
 
 ;; <%= anchor "createOption" %>
-(defun replace-anchor-macro ()
-  (interactive)
-  (if (not (goto-next-anchor))
-      (message "No more anchors")
-    (let ((target (anchor-target))
-          (text (anchor-text)))
+(defun replace-macro (type)
+  (if (not (goto-next-macro type))
+      (message (concat "No more " type "s"))
+    (let ((target (curr-target))
+          (text (curr-text)))
       (insert (concat "<a href=\"#" target "\">" text "</a>"))
       (while (not (looking-at "%>"))
         (delete-char 1))
       (delete-char 2))))
 
-(defun goto-next-anchor ()
+(defun replace-anchor-macro ()
   (interactive)
-  (if (search-forward "<%= anchor" nil t)
-      (progn (backward-char 10) (point)) nil))
+  (replace-macro "anchor"))
+
+(defun replace-module-macro ()
+  (interactive)
+  (replace-macro "m"))
+
+(defun goto-next-macro (type)
+  (interactive)
+  (if (search-forward (concat "<%= " type) nil t)
+      (progn (backward-char (+ (length type) 4)) (point)) nil))
 
 (defun jump-to-before-next (str)
   (progn (search-forward str)
          (backward-char)
          (point)))
 
-(defun anchor-target ()
+(defun curr-target ()
   (save-excursion
     (let* ((beg (point))
            (bound (search-forward "%>")))
@@ -51,7 +58,7 @@
          (point)
          (jump-to-before-next "\""))))))
 
-(defun anchor-text ()
+(defun curr-text ()
   (save-excursion
     (search-forward "\"")
     (buffer-substring
@@ -70,14 +77,16 @@
       (progn (message "Buffer clean!") t)
     (message "Sorry mac, more cruft to clean") nil))
 
-
 (defun convert-doc-buffer ()
   (interactive)
   (beginning-of-buffer)
   (while (replace-id-macro))
   (beginning-of-buffer)
-  (while (goto-next-anchor)
-    (replace-anchor-macro))
+  (while (goto-next-macro "anchor")
+    (replace-macro "anchor"))
+  (beginning-of-buffer)
+  (while (goto-next-macro "m")
+    (replace-macro "m"))
   (beginning-of-buffer)
   (while (not (is-clean-p))
     (replace-doc-url)))
@@ -91,6 +100,7 @@
   (define-key buster-docs-cleanup-mode-map (kbd "C-c a") 'replace-anchor-macro)
   (define-key buster-docs-cleanup-mode-map (kbd "C-c i") 'replace-id-macro)
   (define-key buster-docs-cleanup-mode-map (kbd "C-c c") 'convert-doc-buffer)
+  (define-key buster-docs-cleanup-mode-map (kbd "C-c p") 'fix-paragraph)
   (define-key buster-docs-cleanup-mode-map (kbd "C-c C-c") 'is-clean-p))
 
 (define-minor-mode buster-docs-cleanup-mode

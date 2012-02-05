@@ -44,7 +44,7 @@ refute.equals(42, 43);</code></pre>
           intent in tests. They also facilitate much better feedback when they
           fail. You can add custom assertions that behave exactly like the
           built-in ones (i.e. with counting, message formatting, expectations
-          and more) by using the <%= anchor("add", "<code>add</code>") %>
+          and more) by using the <a href="#<code>add</code>">add</a>
           method.
         </p>
         <h3>Overriding assertion messages</h3>
@@ -52,7 +52,7 @@ refute.equals(42, 43);</code></pre>
           The default assertion messages can be overridden. The properties to
           overwrite are listed with each assertion along with the arguments the
           string is fed. Here's an example of providing a new assertion failure
-          message for <%= anchor("<code>assert.equals</code>", "assert-equals") %>:
+          message for <a href="#assert-equals"><code>assert.equals</code></a>:
         </p>
         <pre><code>var assert = buster.assertions.assert;
 assert.equals.message = "I wanted ${0} == ${1}!"
@@ -66,36 +66,41 @@ try {
 // Prints:
 // "I wanted 3 == 4!"</code></pre>
         <div class="section">
-          <h2 id="<%= id('events') %>">Events</h2>
+          <h2 id="events'">Events</h2>
           <div class="intro">
             <p>
-              <code>buster.assertions</code> is an <%= m("eventEmitter") %>. Listen to
-              events with <code>on</code>:
+              <code>buster.assertions</code> is
+              an <a href="/docs/buster-core/event-emitter"><code>eventEmitter</code></a>. Listen
+              to events with <code>on</code>:
             </p>
             <pre><code>buster.assertions.on("failure", function (err) {
     console.log(err.message);
 });</code></pre>
           </div>
-          <%= event("pass") %>
+          <h3 data-title="+pass+" id="event-pass">
+            Event: <code>"pass", function () {}</code>
+          </h3>
           <p>
             Assertion passed. The callback is invoked with the assertion name,
             e.g. <code>"equals"</code>, as its only argument. Note that this
             event is also emitted when refutations pass.
           </p>
-          <%= event("failure", [[:error, "#AssertionError"]]) %>
+          <h3 data-title="+failure+" id="event-failure">
+            Event: <code>"failure", function (<a href="#AssertionError">error</a>) {}</code>
+          </h3>
           <p>
             Assertion failed. The callback is invoked with an
-            <%=l "AssertionError" %> object.
+            <a href="#AssertionError"><code>AssertionError</code></a> object.
           </p>
         </div>
         <div class="section">
-          <h2 id="<%= id('assertions') %>">Assertions</h2>
+          <h2 id="assertions'">Assertions</h2>
           <p>
             Examples assume that you have
             aliased <code>buster.assertions.assert</code> as such:
           </p>
           <pre><code>var assert = buster.assertions.assert;</code></pre>
-          <h3 id="<%= id('assert') %>" data-title="+assert(actual[, msg])+"><code>assert(actual[, message]);</code></h3>
+          <h3 id="assert'" data-title="+assert(actual[, msg])+"><code>assert(actual[, message]);</code></h3>
           <p>
             Fails if <code>actual</code> is falsy
             (<code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>,
@@ -108,14 +113,14 @@ assert(null, "This will fail"); // Fails with custom message
 assert(null); // Fails
 assert(34);   // Passes
 </code></pre>
-          <h3 id="<%= id('assert-same') %>" data-title="+same(expected, actual)+"><code>assert.same(expected, actual)</code></h3>
+          <h3 id="assert-same'" data-title="+same(expected, actual)+"><code>assert.same(expected, actual)</code></h3>
           <p>
             Fails if <code>actual</code> <strong>is not</strong> the same object
             (<code>===</code>) as <code>expected</code>. To compare similar
             objects, such as <code>{ name: "Chris", id: 42 }</code> and <code>{
               id: 42, name: "Chris" }</code> (not the same instance), see
-            <%=l "assert.equals" %>. The optional message is prepended
-            to the failure message if provided.
+            <a href="#assert-equals"><code>assert.equals</code></a>. The optional
+            message is prepended to the failure message if provided.
           </p>
           <pre><code>var obj = { id: 42, name: "Chris" };
 
@@ -131,7 +136,7 @@ assert.same(obj, { id: 42, name: "Chris" }); // Fails</code></pre>
               <dd>The expected object</dd>
             </dl>
           </div>
-          <h3 id="<%= id('assert-equals') %>" data-title="+equals(actual, expected)+"><code>assert.equals(actual, expected)</code></h3>
+          <h3 id="assert-equals'" data-title="+equals(actual, expected)+"><code>assert.equals(actual, expected)</code></h3>
           <p>
             Compares <code>actual</code> to <code>expected</code> property by
             property. If the property count does not match, or if any
@@ -164,7 +169,7 @@ assert.equals({ name: "Professor Chaos" }, { name: "Dr Evil" });         // Fail
             </dl>
           </div>
           <h3 data-title="+typeOf(object, expected)+"
-              id="<%= id('assert-typeOf') %>"><code>assert.typeOf(object, expected)</code></h3>
+              id="assert-typeOf'"><code>assert.typeOf(object, expected)</code></h3>
           <p>
             Fails if <code>typeof object</code> is not <code>expected</code>.
             The optional message is prepended to the failure message if
@@ -186,7 +191,7 @@ assert.typeOf(null, "function"); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+defined(object)+"
-              id="<%= id('assert-defined') %>"><code>assert.defined(object)</code></h3>
+              id="assert-defined'"><code>assert.defined(object)</code></h3>
           <p>
             Fails if <code>object</code> is <code>undefined</code>. The
             optional message is prepended to the failure message if provided.
@@ -198,7 +203,7 @@ assert.defined(a); // Fails</code></pre>
             <h4>Message</h4>
             <p><code>assert.defined.message = "Expected to be defined";</code></p>
           </div>
-          <h3 data-title="+isNull(object)+" id="<%= id('assert-isNull') %>"><code>assert.isNull(object)</code></h3>
+          <h3 data-title="+isNull(object)+" id="assert-isNull'"><code>assert.isNull(object)</code></h3>
           <p>
             Fails if <code>object</code> is not <code>null</code>. The optional
             message is prepended to the failure message if provided.
@@ -216,7 +221,7 @@ assert.isNull({});   // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+match(actual, matcher)+"
-              id="<%= id('assert-match') %>"><code>assert.match(actual, matcher)</code></h3>
+              id="assert-match'"><code>assert.match(actual, matcher)</code></h3>
           <p>
             Fails if <code>matcher</code> is not a partial match
             for <code>actual</code>. Accepts a wide range of input combinations.
@@ -363,7 +368,7 @@ assert.match(el, {
               <dd>The expected object</dd>
             </dl>
           </div>
-          <h3 data-title="+isObject(object)+" id="<%= id('assert-isObject') %>"><code>assert.isObject(object)</code></h3>
+          <h3 data-title="+isObject(object)+" id="assert-isObject'"><code>assert.isObject(object)</code></h3>
           <p>
             Fails if <code>object</code> is not an object or if it
             is <code>null</code>.
@@ -382,7 +387,7 @@ assert.isObject(function () {}); // Fails</code></pre>
               <dd><code>typeof object</code></dd>
             </dl>
           </div>
-          <h3 data-title="+isFunction(object)+" id="<%= id('assert-isFunction') %>"><code>assert.isFunction(actual)</code></h3>
+          <h3 data-title="+isFunction(object)+" id="assert-isFunction'"><code>assert.isFunction(actual)</code></h3>
           <p>
             Fails if <code>actual</code> is not a function.
           </p>
@@ -400,7 +405,7 @@ assert.isFunction(function () {}); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+exception(callback[, type])+"
-              id="<%= id('assert-exception') %>"><code>assert.exception(callback[, type])</code></h3>
+              id="assert-exception'"><code>assert.exception(callback[, type])</code></h3>
           <p>
             Fails if <code>callback</code> does not throw an exception. If the
             optional <code>type</code> is provided, the assertion fails if the
@@ -446,7 +451,7 @@ assert.exception(function () {}, "TypeError");</code></pre>
             </dl>
           </div>
           <h3 data-title="+tagName(element, tagName)+"
-              id="<%= id('assert-tagName') %>"><code>assert.tagName(element, tagName)</code></h3>
+              id="assert-tagName'"><code>assert.tagName(element, tagName)</code></h3>
           <p>
             Fails if the <code>element</code> either does not specify
             a <code>tagName</code> property, or if its value is not a
@@ -473,7 +478,7 @@ assert.tagName(document.createElement("p"), "li");  // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+className(element, tagName)+"
-              id="<%= id('assert-className') %>"><code>assert.className(element, className)</code></h3>
+              id="assert-className'"><code>assert.className(element, className)</code></h3>
           <p>
             Fails if the <code>element</code> either does not specify
             a <code>className</code> property, or if its value is not a
@@ -507,18 +512,19 @@ assert.className(el, ["item", "feed"]); // Passes</code></pre>
           </div>
         </div>
         <div class="section">
-          <h2 id="<%= id('stubs') %>">Stubs and spies</h2>
+          <h2 id="stubs'">Stubs and spies</h2>
           <p>
             The default Buster.JS bundle comes with built-in spies, stubs and
             mocks provided by <a href="http://sinonjs.org">Sinon.JS</a>. The
             assertions are indisposable when working with spies and
             stubs. However, note that these assertions are technically provided
-            by the integration package <%=m "sinon" %>, <em>not</em>
+            by the integration package
+            <a href="/docs/buster-sinon">buster-sinon</a>, <em>not</em>
             <strong>buster-assertions</strong>. This only matters if you use
             this package stand-alone.
           </p>
           <h3 data-title="+called(spy)+"
-              id="<%= id('assert-called') %>"><code>assert.called(spy)</code></h3>
+              id="assert-called'"><code>assert.called(spy)</code></h3>
           <p>
             Fails if the spy has never been called.
           </p>
@@ -540,7 +546,7 @@ assert.called(spy); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+callOrder(spy, spy2, ...)+"
-              id="<%= id('assert-callOrder') %>"><code>assert.callOrder(spy, spy2, ...)</code></h3>
+              id="assert-callOrder'"><code>assert.callOrder(spy, spy2, ...)</code></h3>
           <p>
             Fails if the spies were not called in the specified order.
           </p>
@@ -565,7 +571,7 @@ assert.callOrder(spy1, spy2, spy3); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledOnce(spy)+"
-              id="<%= id('assert-calledOnce') %>"><code>assert.calledOnce(spy)</code></h3>
+              id="assert-calledOnce'"><code>assert.calledOnce(spy)</code></h3>
           <p>
             Fails if the spy has never been called or if it was called more than
             once.
@@ -595,7 +601,7 @@ assert.called(spy); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledTwice(spy)+"
-              id="<%= id('assert-calledTwice') %>"><code>assert.calledTwice(spy)</code></h3>
+              id="assert-calledTwice'"><code>assert.calledTwice(spy)</code></h3>
           <p>
             Only passes if the spy was called exactly two times.
           </p>
@@ -627,7 +633,7 @@ assert.called(spy); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledThrice(spy)+"
-              id="<%= id('assert-calledThrice') %>"><code>assert.calledThrice(spy)</code></h3>
+              id="assert-calledThrice'"><code>assert.calledThrice(spy)</code></h3>
           <p>
             Only passes if the spy has been called exactly three times.
           </p>
@@ -659,7 +665,7 @@ assert.called(spy); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledWith(spy, arg1, arg2, ...)+"
-              id="<%= id('assert-calledWith') %>"><code>assert.calledWith(spy, arg1, arg2, ...)</code></h3>
+              id="assert-calledWith'"><code>assert.calledWith(spy, arg1, arg2, ...)</code></h3>
           <p>
             Passes if the spy was called at least once with the specified
             arguments. Other arguments may have been passed after the specified
@@ -688,7 +694,7 @@ assert.calledWith(spy, "Hey", arr); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledOnceWith(spy, arg1, arg2, ...)+"
-              id="<%= id('assert-calledOnceWith') %>"><code>assert.calledOnceWith(spy, arg1, arg2, ...)</code></h3>
+              id="assert-calledOnceWith'"><code>assert.calledOnceWith(spy, arg1, arg2, ...)</code></h3>
           <p>
             Passes if the spy was called exactly once and with the specified
             arguments. Other arguments may have been passed after the specified
@@ -717,13 +723,13 @@ assert.calledOnceWith(spy, 42, 13); // Fails</code></pre>
           </div>
         </div>
         <div class="section">
-          <h2 id="<%= id('refutations') %>">Refutations</h2>
+          <h2 id="refutations'">Refutations</h2>
           <p>
             Examples assume that you have
             aliased <code>buster.assertions.refute</code> as such:
           </p>
           <pre><code>var refute = buster.assertions.refute;</code></pre>
-          <h3 id="<%= id('refute') %>" data-title="+refute(actual[, msg])+"><code>refute(actual[, message]);</code></h3>
+          <h3 id="refute'" data-title="+refute(actual[, msg])+"><code>refute(actual[, message]);</code></h3>
           <p>
             Fails if <code>actual</code> is truthy. Fails with either the
             provided message or "Expected null to be falsy". This behavior
@@ -735,7 +741,7 @@ refute(null, "This will pass");
 refute(null); // Passes
 refute(34);   // Fails
 </code></pre>
-          <h3 id="<%= id('refute-same') %>" data-title="+same(expected, actual)+"><code>refute.same(expected, actual)</code></h3>
+          <h3 id="refute-same'" data-title="+same(expected, actual)+"><code>refute.same(expected, actual)</code></h3>
           <p>
             Fails if <code>actual</code> <strong>is</strong> the same object
             (<code>===</code>) as <code>expected</code>. To compare similar
@@ -757,7 +763,7 @@ refute.same(obj, obj);                       // Fails</code></pre>
               <dd>The expected object</dd>
             </dl>
           </div>
-          <h3 id="<%= id('refute-equals') %>" data-title="+equals(actual, expected)+"><code>refute.equals(actual, expected)</code></h3>
+          <h3 id="refute-equals'" data-title="+equals(actual, expected)+"><code>refute.equals(actual, expected)</code></h3>
           <p>
             Passes in any case where <%=l "assert.equals" %> fails.
             The optional message is prepended to the failure message if provided.
@@ -776,7 +782,7 @@ refute.equals({ name: "Professor Chaos" }, { name: "Professor Chaos" });// Fails
             </dl>
           </div>
           <h3 data-title="+typeOf(object, expected)+"
-              id="<%= id('refute-typeOf') %>"><code>refute.typeOf(object, expected)</code></h3>
+              id="refute-typeOf'"><code>refute.typeOf(object, expected)</code></h3>
           <p>
             Fails if <code>typeof object</code> is <code>expected</code>. The
             optional message is prepended to the failure message if provided.
@@ -794,7 +800,7 @@ refute.typeOf({}, "object");     // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+defined(object)+"
-              id="<%= id('refute-defined') %>"><code>refute.defined(object)</code></h3>
+              id="refute-defined'"><code>refute.defined(object)</code></h3>
           <p>
             Fails if <code>object</code> is not <code>undefined</code>. The
             optional message is prepended to the failure message if provided.
@@ -816,7 +822,7 @@ refute.defined({});        // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+isNull(object)+"
-              id="<%= id('refute-isNull') %>"><code>refute.isNull(object)</code></h3>
+              id="refute-isNull'"><code>refute.isNull(object)</code></h3>
           <p>
             Fails if <code>object</code> is <code>null</code>. The optional
             message is prepended to the failure message if provided.
@@ -828,9 +834,9 @@ refute.isNull(null); // Fails</code></pre>
             <p><code>refute.isNull.message = "Expected not to be null";</code></p>
           </div>
           <h3 data-title="+match(actual, pattern)+"
-              id="<%= id('refute-match') %>"><code>refute.match(actual, pattern)</code></h3>
+              id="refute-match'"><code>refute.match(actual, pattern)</code></h3>
           <p>
-            Fails in cases where <%= anchor("assert.match", "assert-match") %>
+            Fails in cases where <a href="#assert-match">assert.match</a>
             passes.
           </p>
           <div class="msg">
@@ -855,7 +861,7 @@ refute.isNull(null); // Fails</code></pre>
               <dd>The expected object</dd>
             </dl>
           </div>
-          <h3 data-title="+isObject(object)+" id="<%= id('refute-isObject') %>"><code>refute.isObject(object)</code></h3>
+          <h3 data-title="+isObject(object)+" id="refute-isObject'"><code>refute.isObject(object)</code></h3>
           <p>
             Fails if <code>object</code> is a non-null object.
           </p>
@@ -873,7 +879,7 @@ refute.isObject(function () {}); // Passes</code></pre>
               <dd><code>typeof object</code></dd>
             </dl>
           </div>
-          <h3 data-title="+isFunction(object)+" id="<%= id('refute-isFunction') %>"><code>refute.isFunction(actual)</code></h3>
+          <h3 data-title="+isFunction(object)+" id="refute-isFunction'"><code>refute.isFunction(actual)</code></h3>
           <p>
             Fails if <code>actual</code> is a function.
           </p>
@@ -891,7 +897,7 @@ refute.isFunction(function () {}); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+exception(callback)+"
-              id="<%= id('refute-exception') %>"><code>refute.exception(callback)</code></h3>
+              id="refute-exception'"><code>refute.exception(callback)</code></h3>
           <p>
             Fails if <code>callback</code> throws an exception.
           </p>
@@ -913,7 +919,7 @@ refute.exception(function () {
             </dl>
           </div>
           <h3 data-title="+tagName(element, tagName)+"
-              id="<%= id('refute-tagName') %>"><code>refute.tagName(element, tagName)</code></h3>
+              id="refute-tagName'"><code>refute.tagName(element, tagName)</code></h3>
           <p>
             Fails if the <code>element</code> either does not specify
             a <code>tagName</code> property, or if its value <strong>is</strong> a
@@ -938,7 +944,7 @@ refute.tagName(document.createElement("p"), "p");   // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+className(element, className)+"
-              id="<%= id('refute-className') %>"><code>refute.className(element, className)</code></h3>
+              id="refute-className'"><code>refute.className(element, className)</code></h3>
           <p>
             Fails if the <code>element</code> either does not specify
             a <code>className</code> property, or if its value <strong>is</strong>
@@ -973,13 +979,13 @@ refute.className(el, ["item", "feed"]); // Passes</code></pre>
           </div>
         </div>
         <div class="section">
-          <h2 id="<%= id('refute-stubs') %>">Stubs and spies</h2>
+          <h2 id="refute-stubs'">Stubs and spies</h2>
           <p>
-            See <%= anchor("Stubs and spies", "stubs") %> for explanation. The
+            See <a href="#stubs">Stubs and spies</a> for explanation. The
             following are spy/stub related refutations.
           </p>
           <h3 data-title="+called(spy)+"
-              id="<%= id('refute-called') %>"><code>refute.called(spy)</code></h3>
+              id="refute-called'"><code>refute.called(spy)</code></h3>
           <p>
             Passes when spy has never been called.
           </p>
@@ -1002,10 +1008,10 @@ refute.called(spy); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+callOrder(spy, spy2, ...)+"
-              id="<%= id('refute-called') %>"><code>refute.callOrder(spy, spy2, ...)</code></h3>
+              id="refute-called'"><code>refute.callOrder(spy, spy2, ...)</code></h3>
           <p>
             Passes where
-            <%= anchor "<code>assert.callOrder</code>", "assert-callOrder" %>
+            <a href="#assert-callOrder"><code>assert.callOrder</code></a>
             fails.
           </p>
           <div class="msg">
@@ -1017,7 +1023,7 @@ refute.called(spy); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledOnce(spy)+"
-              id="<%= id('refute-calledOnce') %>"><code>refute.calledOnce(spy)</code></h3>
+              id="refute-calledOnce'"><code>refute.calledOnce(spy)</code></h3>
           <p>
             Fails if the spy was called exactly once.
           </p>
@@ -1046,7 +1052,7 @@ refute.called(spy); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledTwice(spy)+"
-              id="<%= id('refute-calledTwice') %>"><code>refute.calledTwice(spy)</code></h3>
+              id="refute-calledTwice'"><code>refute.calledTwice(spy)</code></h3>
           <p>
             Fails if the spy was called exactly twice.
           </p>
@@ -1078,7 +1084,7 @@ refute.called(spy); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledThrice(spy)+"
-              id="<%= id('refute-calledThrice') %>"><code>refute.calledThrice(spy)</code></h3>
+              id="refute-calledThrice'"><code>refute.calledThrice(spy)</code></h3>
           <p>
             Fails if the spy was called exactly three times.
           </p>
@@ -1112,7 +1118,7 @@ refute.called(spy); // Passes</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledWith(spy, arg1, arg2, ...)+"
-              id="<%= id('refute-calledWith') %>"><code>refute.calledWith(spy, arg1, arg2, ...)</code></h3>
+              id="refute-calledWith'"><code>refute.calledWith(spy, arg1, arg2, ...)</code></h3>
           <p>
             Fails if the spy was called at least once with the specified
             arguments.
@@ -1140,7 +1146,7 @@ refute.calledWith(spy, "Hey", arr); // Fails</code></pre>
             </dl>
           </div>
           <h3 data-title="+calledOnceWith(spy, arg1, arg2, ...)+"
-              id="<%= id('refute-calledOnceWith') %>"><code>refute.calledOnceWith(spy, arg1, arg2, ...)</code></h3>
+              id="refute-calledOnceWith'"><code>refute.calledOnceWith(spy, arg1, arg2, ...)</code></h3>
           <p>
             Fails if the spy was called exactly once and with the specified
             arguments. Other arguments may have been passed after the specified
@@ -1169,7 +1175,7 @@ refute.calledOnceWith(spy, 42, 13); // Passes</code></pre>
           </div>
         </div>
         <div class="section">
-          <h2 id="<%= id('expectations') %>">Expectations</h2>
+          <h2 id="expectations'">Expectations</h2>
           <p>
             All of buster-assertion's assertions and refutations are also
             exposed as "expectations". Expectations is just a slightly different
@@ -1186,44 +1192,44 @@ refute.calledOnceWith(spy, 42, 13); // Passes</code></pre>
 expect({ id: 42 }).toBeObject(); // Passes
 expect("Somewhere in here").toMatch("in"); // Passes
 expect(42).not().toEqual(43); // Passes</code></pre>
-          <h3 data-title="+toBeSameAs(expected)+" id="<%= id('toBeSameAs') %>"><code>expect(actual).toBeSameAs(expected)</code></h3>
+          <h3 data-title="+toBeSameAs(expected)+" id="toBeSameAs'"><code>expect(actual).toBeSameAs(expected)</code></h3>
           <p>See <%=l "assert.same" %></p>
-          <h3 data-title="+toEqual(expected)+" id="<%= id('toEqual') %>"><code>expect(actual).toEqual(expected)</code></h3>
+          <h3 data-title="+toEqual(expected)+" id="toEqual'"><code>expect(actual).toEqual(expected)</code></h3>
           <p>See <%=l "assert.equals" %></p>
-          <h3 data-title="+toBeType(type)+" id="<%= id('toBeType') %>"><code>expect(actual).toBeType(type)</code></h3>
+          <h3 data-title="+toBeType(type)+" id="toBeType'"><code>expect(actual).toBeType(type)</code></h3>
           <p>See <%=l "assert.typeOf" %></p>
-          <h3 data-title="+toBeDefined(expected)+" id="<%= id('toBeDefined') %>"><code>expect(actual).toBeDefined(expected)</code></h3>
+          <h3 data-title="+toBeDefined(expected)+" id="toBeDefined'"><code>expect(actual).toBeDefined(expected)</code></h3>
           <p>See <%=l "assert.defined" %></p>
-          <h3 data-title="+toBeNull(expected)+" id="<%= id('toBeNull') %>"><code>expect(actual).toBeNull(expected)</code></h3>
+          <h3 data-title="+toBeNull(expected)+" id="toBeNull'"><code>expect(actual).toBeNull(expected)</code></h3>
           <p>See <%=l "assert.isNull" %></p>
-          <h3 data-title="+toMatch(expected)+" id="<%= id('toMatch') %>"><code>expect(actual).toMatch(expected)</code></h3>
+          <h3 data-title="+toMatch(expected)+" id="toMatch'"><code>expect(actual).toMatch(expected)</code></h3>
           <p>See <%=l "assert.match" %></p>
-          <h3 data-title="+toBeObject(expected)+" id="<%= id('toBeObject') %>"><code>expect(actual).toBeObject(expected)</code></h3>
+          <h3 data-title="+toBeObject(expected)+" id="toBeObject'"><code>expect(actual).toBeObject(expected)</code></h3>
           <p>See <%=l "assert.isObject" %></p>
-          <h3 data-title="+toBeFunction(expected)+" id="<%= id('toBeFunction') %>"><code>expect(actual).toBeFunction(expected)</code></h3>
+          <h3 data-title="+toBeFunction(expected)+" id="toBeFunction'"><code>expect(actual).toBeFunction(expected)</code></h3>
           <p>See <%=l "assert.isFunction" %></p>
-          <h3 data-title="+toThrow(expected)+" id="<%= id('toThrow') %>"><code>expect(actual).toThrow(expected)</code></h3>
+          <h3 data-title="+toThrow(expected)+" id="toThrow'"><code>expect(actual).toThrow(expected)</code></h3>
           <p>See <%=l "assert.exception" %></p>
-          <h3 data-title="+toHaveTagName(expected)+" id="<%= id('toHaveTagName') %>"><code>expect(actual).toHaveTagName(expected)</code></h3>
+          <h3 data-title="+toHaveTagName(expected)+" id="toHaveTagName'"><code>expect(actual).toHaveTagName(expected)</code></h3>
           <p>See <%=l "assert.tagName" %></p>
-          <h3 data-title="+toHaveClassName(expected)+" id="<%= id('toHaveClassName') %>"><code>expect(actual).toHaveClassName(expected)</code></h3>
+          <h3 data-title="+toHaveClassName(expected)+" id="toHaveClassName'"><code>expect(actual).toHaveClassName(expected)</code></h3>
           <p>See <%=l "assert.className" %></p>
-          <h3 data-title="+toBeCalled()+" id="<%= id('toBeCalled') %>"><code>expect(spy).toBeCalled()</code></h3>
+          <h3 data-title="+toBeCalled()+" id="toBeCalled'"><code>expect(spy).toBeCalled()</code></h3>
           <p>See <%=l "assert.called" %></p>
-          <h3 data-title="+toBeCalledOnce()+" id="<%= id('toBeCalledOnce') %>"><code>expect(spy).toBeCalledOnce(expected)</code></h3>
+          <h3 data-title="+toBeCalledOnce()+" id="toBeCalledOnce'"><code>expect(spy).toBeCalledOnce(expected)</code></h3>
           <p>See <%=l "assert.calledOnce" %></p>
-          <h3 data-title="+toBeCalledTwice()+" id="<%= id('toBeCalledTwice') %>"><code>expect(spy).toBeCalledTwice(expected)</code></h3>
+          <h3 data-title="+toBeCalledTwice()+" id="toBeCalledTwice'"><code>expect(spy).toBeCalledTwice(expected)</code></h3>
           <p>See <%=l "assert.calledTwice" %></p>
-          <h3 data-title="+toBeCalledThrice()+" id="<%= id('toBeCalledThrice') %>"><code>expect(spy).toBeCalledThrice(expected)</code></h3>
+          <h3 data-title="+toBeCalledThrice()+" id="toBeCalledThrice'"><code>expect(spy).toBeCalledThrice(expected)</code></h3>
           <p>See <%=l "assert.calledThrice" %></p>
-          <h3 data-title="+toBeCalledWith(arg1, arg2, ...)+" id="<%= id('toBeCalledWith') %>"><code>expect(spy).toBeCalledWith(arg1, arg2, ...)</code></h3>
+          <h3 data-title="+toBeCalledWith(arg1, arg2, ...)+" id="toBeCalledWith'"><code>expect(spy).toBeCalledWith(arg1, arg2, ...)</code></h3>
           <p>See <%=l "assert.calledWith" %></p>
-          <h3 data-title="+toBeCalledOnceWith(arg1, arg2, ...)+" id="<%= id('toBeCalledOnceWith') %>"><code>expect(spy).toBeCalledOnceWith(arg1, arg2, ...)</code></h3>
+          <h3 data-title="+toBeCalledOnceWith(arg1, arg2, ...)+" id="toBeCalledOnceWith'"><code>expect(spy).toBeCalledOnceWith(arg1, arg2, ...)</code></h3>
           <p>See <%=l "assert.calledOnceWith" %></p>
         </div>
         <div class="section">
-          <h2 id="<%= id('methods') %>">Methods</h2>
-          <h3 id="<%= id('fail') %>"><code>fail(message)</code></h3>
+          <h2 id="methods'">Methods</h2>
+          <h3 id="fail'"><code>fail(message)</code></h3>
           <p>
             When an assertion fails, it calls <code>buster.assertions.fail</code> with
             the failure message as the only argument. The built-in
@@ -1251,7 +1257,7 @@ expect(42).not().toEqual(43); // Passes</code></pre>
             exceptions. To silence exceptions, see the <%=l "throwOnFailure" %>
             property.
           </p>
-          <h3 id="<%= id('format') %>"><code>format(object)</code></h3>
+          <h3 id="format'"><code>format(object)</code></h3>
           <p>
             Values inserted into assertion messages using the <code>${n}</code>
             switches are formatted using <code>buster.assertions.format(obj)</code>.
@@ -1263,7 +1269,7 @@ expect(42).not().toEqual(43); // Passes</code></pre>
             ascii formatting of objects (including DOM elements) do:
           </p>
           <pre><code>buster.assertions.format = buster.format.ascii;</code></pre>
-          <h3 id="<%= id('add') %>"><code>add(name, options)</code></h3>
+          <h3 id="add'"><code>add(name, options)</code></h3>
           <p>
             Add a custom assertion. Using this 'macro' to add project specific
             assertions has a few advantages:
@@ -1272,7 +1278,7 @@ expect(42).not().toEqual(43); // Passes</code></pre>
             <li>Assertions will be counted.</li>
             <li>
               Failure messages will have interpolated arguments formatted by
-              <%= anchor("<code>buster.assertions.format</code>", "format") %>.
+              <a href="#format"><code>buster.assertions.format</code></a>.
             </li>
             <li>
               A single function generates both an assertion and a refutation.
@@ -1394,7 +1400,7 @@ expect("foo").toBeFoo();</code>
                 A function that maps values to be interpolated into the failure
                 messages. This can be used when you need something more/else than
                 the actual arguments in order. For instance, the built-in
-                <%= anchor("<code>assert.typeOf</code>", "assert-typeOf") %>
+                <a href="#assert-typeOf"><code>assert.typeOf</code></a>
                 assertion needs the actual type. Its <code>assertMessage</code> is
                 <code>"Expected typeof ${0} (${2}) to be ${1}"</code>, and its
                 <code>values</code> option is:
@@ -1409,19 +1415,19 @@ expect("foo").toBeFoo();</code>
               e.g. "toBeSomething". Optional.
             </dd>
           </dl>
-          <h2 id="<%= id('utilities') %>">Supporting utilities</h2>
-          <h3 id="<%= id('isNode') %>"><code>isNode(object)</code></h3>
+          <h2 id="utilities'">Supporting utilities</h2>
+          <h3 id="isNode'"><code>isNode(object)</code></h3>
           <p>
             Returns <code>true</code> if the object is a DOM node. The check is made by
             attempting to call <code>appendChild</code> on it, passing in an element.
           </p>
-          <h3 id="<%= id('isElement') %>"><code>isElement(object)</code></h3>
+          <h3 id="isElement'"><code>isElement(object)</code></h3>
           <p>
             Returns <code>true</code> if the object is a DOM element. The check is made
             by calling <%=anchor "buster.isNode", "isNode" %> and asserting that the
             element's <code>nodeType</code> is 1 (i.e. element).
           </p>
-          <h3 id="<%= id('isArguments') %>"><code>isArguments(object)</code></h3>
+          <h3 id="isArguments'"><code>isArguments(object)</code></h3>
           <p>
             Returns true if the argument is an <code>arguments</code> object. Buster
             checks this by making sure the object is array-like, but not actually an
@@ -1432,7 +1438,7 @@ expect("foo").toBeFoo();</code>
 }
 
 buster.isArguments([]); // false</code></pre>
-          <h3 id="<%= id('keys') %>"><code>keys(object)</code></h3>
+          <h3 id="keys'"><code>keys(object)</code></h3>
           <p>
             Cross-browser implementation of
             <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys">Object.keys</a>.
@@ -1443,7 +1449,7 @@ buster.isArguments([]); // false</code></pre>
           </p>
         </div>
         <div class="section">
-          <h2 id="<%= id('properties') %>">Properties</h2>
+          <h2 id="properties'">Properties</h2>
           <%= property("count", "0") %>
           <p>
             <code>buster.assertions.count</code> is incremented anytime an assertion
@@ -1452,7 +1458,7 @@ buster.isArguments([]); // false</code></pre>
           </p>
           <%= property("throwOnFailure", "true") %>
           <p>
-            When using the <%= anchor("default <code>fail</code>", "fail") %>
+            When using the <a href="#fail">default <code>fail</code></a>
             implementation, this property can be set to <code>false</code> to make
             assertion failures <strong>not</strong> throw exceptions (i.e. only
             emit events). This may be suitable in asynchronous test runners, where
@@ -1460,8 +1466,8 @@ buster.isArguments([]); // false</code></pre>
           </p>
         </div>
         <div class="section">
-          <h2 id="<%= id('supporting-objects') %>">Supporting objects</h2>
-          <h3 id="<%= id('AssertionError') %>"><code>AssertionError</code></h3>
+          <h2 id="supporting-objects'">Supporting objects</h2>
+          <h3 id="AssertionError'"><code>AssertionError</code></h3>
           <p>
             An exception (specifically, an <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error"><code>Error</code> object</a>) whose <code>name</code> property is <code>"AssertionError"</code>.
           </p>
