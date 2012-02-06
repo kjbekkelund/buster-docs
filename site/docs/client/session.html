@@ -1,0 +1,93 @@
+<h1><code>buster.session</code></h1>
+<dl>
+  <dt>Version</dt>
+  <dd>See <a href="/buster-client/">buster-client</a></dd>
+  <dt>Module</dt>
+  <dd><code>require("buster-client").session;</code></dd>
+  <dt>In browsers</dt>
+  <dd>N/A</dd>
+</dl>
+<p>
+  The client of a
+  connected <a href="/buster-capture-server/">buster-capture-server</a>
+  session. If you are looking to create a session, you are most likely looking
+  for <a href="/buster-client/client/#createSession"><code>buster.client.createSession(config)</code></a>.
+</p>
+<p>
+  The session can be used to communicate with captured clients through messaging
+  (<a href="#on"><code>on</code></a>, <a href="#emit"><code>emit</code></a>). When
+  your work is completed, the session can be cleanly shut down
+  using <a href="#close"><code>close</code></a>.
+</p>
+<div class="section">
+  <h2 id="methods">Methods</h2>
+  <h3 id="on"><code>on(event, callback);</code></h3>
+  <p>
+    Subscribe to messages sent from any client. See
+    <a href="/buster-multicast/#on"><code>buster.multicast.on</code></a> for
+    details.
+  </p>
+  <h3 id="emit"><code>emit(event, data);</code></h3>
+  <p>
+    Send a message to all clients. See
+    <a href="/buster-multicast/#on"><code>buster.multicast.emit</code></a> for
+    details.
+  </p>
+  <h3 id="close" data-title="+close();+"><code>var <a href="/buster-promise/">promise</a> = session.close();</code></h3>
+  <p>
+    Close session. Sends a HTTP request to the server. Returns a promise that
+    will resolve once the session has been removed from the server.
+  </p>
+  <h3 id="create" data-title="+create(options);+"><code>var config = buster.sessionConfig.create(<a href="#options">options</a>);</code></h3>
+  <p>
+    Create a new session instance. The session is assumed to already be
+    registered on the
+    server. See <a href="/buster-client/client/#createSession"><code>buster.client.createSession(config)</code></a>.
+  </p>
+  <h3 id="connect"><code>connect();</code></h3>
+  <p>
+    Connects the multicast client, if any was provided when the session was
+    created (requires the <code>multicast</code> property on
+    the <a href="#options"><code>options</code></a> object). You only need to
+    call this method when using <a href="#create"><code>create</code></a>,
+    since <a href="#createFromHttpResponse"><code>createFromHttpResponse</code></a>
+    does this for you.
+  </p>
+  <h3 id="createFromHttpResponse"><code>createFromHttpResponse(res, opt);</code></h3>
+  <p>
+    Accepts the response from the request to create a session on the server and
+    initializes a <code>session</code> object. The response body is the JSON
+    payload including <code>rootPath</code>, <code>multicast</code> and possibly
+    other configuration. The opt object contains additional arguments
+    <code>host</code>, <code>port</code> and <code>path</code> for the server.
+  </p>
+</div>
+<div class="section">
+  <h2 id="supporting-objects">Supporting objects</h2>
+  <h3 id="options"><code>options</code></h3>
+  <p>
+    Options for <a href="#create"><code>create</code></a>.
+  </p>
+  <dl class="properties">
+    <dt><code>rootPath</code></dt>
+    <dd>
+      The root path of the session, typically something like
+      <code>"/sessions/1"</code>. Should be retrieved from the server hosting
+      the session.
+    </dd>
+    <dt><code>host</code></dt>
+    <dd>
+      Host where the server is running.
+    </dd>
+    <dt><code>port</code></dt>
+    <dd>
+      Port where the server is running.
+    </dd>
+    <dt><code>multicast</code></dt>
+    <dd>
+      <a href="/buster-multicast/">Multicasting</a> options. Should contain two
+      properties, <code>path</code> and <code>id</code>. Should be retrieved
+      from the server when the session is created remotely.
+    </dd>
+  </dl>
+</div>
