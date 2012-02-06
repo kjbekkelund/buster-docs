@@ -1,6 +1,7 @@
 #!/bin/sh
 
+rm -fr static
 echo "Indexing docs site at http://localhost:8090"
-wget -o wget.log --convert-links --page-requisites --recursive --level=inf -U WGET --html-extension --no-host-directories --directory-prefix=static http://localhost:8090/
-sed -i s/\"index.html/"\"\/"/ static/**/*.html
-sed -i s/index.html// static/**/*.html
+wget --convert-links --page-requisites --recursive --level=inf -U WGET --html-extension --no-host-directories --directory-prefix=static http://localhost:8090/
+find static -name "*.html" | xargs sed -i s/\"index.html/"\"\/"/
+find static -name "*.html" | xargs sed -i s/index.html//
