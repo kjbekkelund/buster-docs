@@ -1,7 +1,7 @@
 <h1>Buster.JS overview</h1>
 <p>Buster.JS is a JavaScript test framework for node and browsers.</p>
 <h2>Installation</h2>
-<p>See <a href="/getting-started/">getting started</a>.</p>
+<p>See <a href="/docs/getting-started/">getting started</a>.</p>
 <h2>The config file</h2>
 <p>
   Buster.JS needs a config file, both for node.js tests and browser tests. Name
@@ -95,7 +95,7 @@ buster.testCase("A test case", {
 </p>
 <p>
   Use <kbd>buster test</kbd> in a terminal to initiate the test run. Here's the
-  test output for <a href="/buster-args/">buster-args</a>.
+  test output for <a href="/docs/args/">buster-args</a>.
 </p>
 <p><img src="/images/node-testing/buster-test-node.png" width="633" height="382"></p>
 <h2>Assertions</h2>
@@ -229,7 +229,7 @@ describe("Bowling kata", function () {
         assert.calledOnce(myLib.thingie.aMethod);
     }
 })</code></pre>
-<p>See full docs at <a href="/sinon-buster/">sinon-buster</a>.</p>
+<p>See full docs at <a href="/docs/sinon/">sinon-buster</a>.</p>
 <h2>Asynchronous tests</h2>
 <p>
   Asynchronous tests are tests that aren't finished running when the test method
@@ -501,16 +501,16 @@ config["My tests"] = {
   be re-used for various purposes.
 </p>
 <p>
-  The <a href="/buster-assertions/">buster-assertions</a> package can easily be
+  The <a href="/docs/assertions/">buster-assertions</a> package can easily be
   used in other testing frameworks. If you use JsTestDriver,
   follow <a href="http://cjohansen.no/using-buster-assertions-with-jstestdriver">these
   steps</a> (hint: it's pretty easy).
 </p>
 <p>
   If you write your own testing framework, you may find many of our modules
-  useful. <a href="/buster-assertions/">buster-assertions</a> is one such
+  useful. <a href="/docs/assertions/">buster-assertions</a> is one such
   module, and is completely reusable. You can also
-  use <a href="/buster-capture-server/">buster-capture-server</a> if you want
+  use <a href="/docs/capture-server/">buster-capture-server</a> if you want
   browser automation in your test framework, without implementing the actual
   browser automation part yourself.
 </p>
@@ -518,7 +518,7 @@ config["My tests"] = {
   Another example of usage of Buster.JS modules in other projects
   is <a href="http://github.com/augustl/slidebuster">Slidebuster</a> (note:
   proof of
-  concept). The <a href="/buster-capture-server/">buster-capture-server</a>
+  concept). The <a href="/docs/capture-server/">buster-capture-server</a>
   module is not test runner specific, it is a generic browser automation
   framework. Slidebuster uses it so that if you "capture" a normal browser and a
   touch device, you can swipe left and right on the touch device to change the
@@ -537,7 +537,7 @@ config["My tests"] = {
   control over when the test run starts.
 </p>
 <p>
-  <a href="/starting-testrun-manually/">Full documentation here</a>.
+  <a href="/docs/starting-testrun-manually/">Full documentation here</a>.
 </p>
 <h2>Global variables</h2>
 <p>
