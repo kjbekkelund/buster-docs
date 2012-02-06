@@ -9,7 +9,7 @@
   <p>
     A test context is Buster's internal test case/specification data
     format. Specifically, a test context is the kind of object that the
-    <a href="/docs/test/test-runner/">test runner</a> knows how to run. This document
+    <a href="/docs/test/runner/">test runner</a> knows how to run. This document
     describes the data format in detail - what features it and the runner supports
     as well as how to create test contexts from external front-ends.
   </p>
@@ -70,7 +70,7 @@
     <dt><code>contexts</code></dt>
     <dd>
       An array of <a href="#testContext"><code>testContext</code></a> objects. In other words, the test
-      context data format (and thus, the <a href="/docs/test/test-runner/">test runner</a>)
+      context data format (and thus, the <a href="/docs/test/runner/">test runner</a>)
       supports arbitrarily nested contexts.
     </dd>
     <dt><code>parent</code></dt>
@@ -114,7 +114,7 @@
   <h2 id="async">Asynchronous tests</h2>
   <p>
     There is no flag to mark tests as asynchronous even though the
-    <a href="/docs/test/test-runner/">test runner</a> supports both synchronous and
+    <a href="/docs/test/runner/">test runner</a> supports both synchronous and
     asynchronous tests. The reason is that it cannot be determined up-front if a
     test is asynchronous or not.
   </p>

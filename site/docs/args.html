@@ -334,9 +334,8 @@ opt.addValidator(function () {
 });</code></pre>
   <h3 id="async-validators">Asynchronous validators</h3>
   <p>
-    <a href="/docs/buster-promise/">Promises</a> are used to facilitate
-    asynchronous validators. Here's an example of a validator that checks if a
-    file is larger than 1MB.
+    Promises are used to facilitate asynchronous validators. Here's an example
+    of a validator that checks if a file is larger than 1MB.
   </p>
   <pre><code>var busterPromise = require("buster-promise");
 opt.addValidator(function () {

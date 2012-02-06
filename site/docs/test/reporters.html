@@ -10,7 +10,7 @@
     <dd><code>buster.reporters;</code></dd>
   </dl>
   <p>
-    Reporters listen to <a href="/docs/test/test-runner/">test runner</a> events and
+    Reporters listen to <a href="/docs/test/runner/">test runner</a> events and
     visualize progress and results of test runs. Buster ships with several
     alternatives, and it is easy to <a href="#implement">make your own</a>.
   </p>
@@ -46,7 +46,7 @@
     <p>
       The <strong>A</strong> indicating an asynchronous test is replaced by one
       of the others when the test completes, or a <strong>T</strong> if it times
-      out (using <a href="en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape characters</a>).
+      out (using <a href="http://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape characters</a>).
     </p>
     <p>
       In order to help you find the source of errors faster, the reporter filters
@@ -60,7 +60,7 @@
       Create an instance.
     </p>
     <h3 id="dots-reporter-listen" data-title="+listen(testRunner)+">
-      <code>listen(<a href="/docs/test/test-runner/">testRunner</a>)</code>
+      <code>listen(<a href="/docs/test/runner/">testRunner</a>)</code>
     </h3>
     <p>
       Bind the reporter to a test runner.
@@ -69,10 +69,10 @@
 var dotsReporter = require("buster-test").reporters.dots;
 
 var reporter = dotsReporter.create({ color: false });
-var runner = testRunner.<a href="/docs/test/test-runner/#create">create</a>();
+var runner = testRunner.<a href="/docs/test/runner/#create">create</a>();
 reporter.listen(runner);
 
-runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre>
+runner.<a href="/docs/test/runner/#runSuite">runSuite</a>(...);</code></pre>
     <h3 id="dots-reporter-sample">Sample output</h3>
     <p><img src="/images/buster-test/dots-reporter.png" width="661" height="698"></p>
   </div>
@@ -98,7 +98,7 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
       Create an instance.
     </p>
     <h3 id="specification-reporter-listen" data-title="+listen(testRunner)+">
-      <code>listen(<a href="/docs/test/test-runner/">testRunner</a>)</code>
+      <code>listen(<a href="/docs/test/runner/">testRunner</a>)</code>
     </h3>
     <p>
       Bind the reporter to a test runner.
@@ -107,10 +107,10 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
 var specificationReporter = require("buster-test").reporters.specification;
 
 var reporter = specificationReporter.create({ color: false });
-var runner = testRunner.<a href="/docs/test/test-runner/#create">create</a>();
+var runner = testRunner.<a href="/docs/test/runner/#create">create</a>();
 reporter.listen(runner);
 
-runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre>
+runner.<a href="/docs/test/runner/#runSuite">runSuite</a>(...);</code></pre>
     <h3 id="specification-reporter-sample">Sample output</h3>
     <p><img src="/images/buster-test/specification-reporter.png" width="685" height="681"></p>
   </div>
@@ -126,7 +126,7 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
       Create an instance.
     </p>
     <h3 id="quiet-reporter-listen" data-title="+listen(testRunner)+">
-      <code>listen(<a href="/docs/test/test-runner/">testRunner</a>)</code>
+      <code>listen(<a href="/docs/test/runner/">testRunner</a>)</code>
     </h3>
     <p>
       Bind the reporter to a test runner.
@@ -135,10 +135,10 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
 var quietReporter = require("buster-test").reporters.quiet;
 
 var reporter = quietReporter.create({ color: false });
-var runner = testRunner.<a href="/docs/test/test-runner/#create">create</a>();
+var runner = testRunner.<a href="/docs/test/runner/#create">create</a>();
 reporter.listen(runner);
 
-runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre>
+runner.<a href="/docs/test/runner/#runSuite">runSuite</a>(...);</code></pre>
     <h3 id="quiet-reporter-sample">Sample output</h3>
     <p><img src="/images/buster-test/quiet-reporter.png" width="661" height="34"></p>
   </div>
@@ -157,7 +157,7 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
       Create an instance.
     </p>
     <h3 id="xml-reporter-listen" data-title="+listen(testRunner)+">
-      <code>listen(<a href="/docs/test/test-runner/">testRunner</a>)</code>
+      <code>listen(<a href="/docs/test/runner/">testRunner</a>)</code>
     </h3>
     <p>
       Bind the reporter to a test runner.
@@ -166,10 +166,10 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
 var xmlReporter = require("buster-test").reporters.xml;
 
 var reporter = xmlReporter.create({ color: false });
-var runner = testRunner.<a href="/docs/test/test-runner/#create">create</a>();
+var runner = testRunner.<a href="/docs/test/runner/#create">create</a>();
 reporter.listen(runner);
 
-runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre>
+runner.<a href="/docs/test/runner/#runSuite">runSuite</a>(...);</code></pre>
     <h3 id="xml-reporter-sample">Sample output</h3>
     <p><img src="/images/buster-test/xml-reporter.png" width="780" height="837"></p>
   </div>
@@ -193,7 +193,7 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
       Create an instance.
     </p>
     <h3 id="html-reporter-listen" data-title="+listen(testRunner)+">
-      <code>listen(<a href="/docs/test/test-runner/">testRunner</a>)</code>
+      <code>listen(<a href="/docs/test/runner/">testRunner</a>)</code>
     </h3>
     <p>
       Bind the reporter to a test runner.
@@ -202,10 +202,10 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
     root: document.body // Full webpage mode
 });
 
-var runner = buster.testRunner.<a href="/docs/test/test-runner/#create">create</a>();
+var runner = buster.testRunner.<a href="/docs/test/runner/#create">create</a>();
 reporter.listen(runner);
 
-runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre>
+runner.<a href="/docs/test/runner/#runSuite">runSuite</a>(...);</code></pre>
     <h3 id="html-reporter-sample">Sample output</h3>
     <p><img src="/images/buster-test/html-reporter.png" width="604" height="810"></p>
   </div>
@@ -213,7 +213,7 @@ runner.<a href="/docs/test/test-runner/#runSuite">runSuite</a>(...);</code></pre
     <h2 id="json-proxy"><code>jsonProxy</code></h2>
     <p>
       Not intended for human consumption. The jsonProxy reporter proxies all
-      events from the <a href="/docs/test/test-runner/">test runner</a>, but strips any
+      events from the <a href="/docs/test/runner/">test runner</a>, but strips any
       non-JSON safe value (such as functions). Buster uses this when emitting test
       results from a browser to the server.
     </p>
@@ -238,7 +238,7 @@ reporter.listen(proxy);</code></pre>
       emit events directly over the wire.
     </p>
     <h3 id="json-proxy-listen" data-title="+listen(testRunner)+">
-      <code>listen(<a href="/docs/test/test-runner/">testRunner</a>)</code>
+      <code>listen(<a href="/docs/test/runner/">testRunner</a>)</code>
     </h3>
     <p>
       Bind the reporter to a test runner.
@@ -247,7 +247,7 @@ reporter.listen(proxy);</code></pre>
   <div class="section">
     <h2 id="implement">Implementing a reporter</h2>
     <p>
-      Buster reporters consume events from a <a href="/docs/test/test-runner/"><code>buster.testRunner</code></a> instance and should conform to the
+      Buster reporters consume events from a <a href="/docs/test/runner/"><code>buster.testRunner</code></a> instance and should conform to the
       simple API described below. For the reporter to be usable with Buster's
       auto-wiring mechanism, you also need to make the reporter available as a
       Node module. The auto-wiring mechanism is what is in use when you have not
@@ -272,7 +272,7 @@ reporter.listen(proxy);</code></pre>
     <p>
       This method allows you to listen to events of interest on the test
       runner. The built-in reporters typically use <a href="/buster-event-emitter/#bind"><code>bind</code></a>, but you are completely free to implement this the
-      way you feel best. See <a href="/docs/test/test-runner/#events">test runner events</a>
+      way you feel best. See <a href="/docs/test/runner/#events">test runner events</a>
       for available events.
     </p>
     <h4>Include your reporter on the load path</h4>
