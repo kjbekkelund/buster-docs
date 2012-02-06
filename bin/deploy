@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -vura --delete -t --force static/ buster@busterjs.org:www/busterjs.org
