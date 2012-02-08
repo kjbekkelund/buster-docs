@@ -337,22 +337,22 @@ opt.addValidator(function () {
     Promises are used to facilitate asynchronous validators. Here's an example
     of a validator that checks if a file is larger than 1MB.
   </p>
-  <pre><code>var busterPromise = require("buster-promise");
+  <pre><code>var when = require("when");
 opt.addValidator(function () {
     var self = this;
-    var promise = busterPromise.create();
+    var deferred = when.defer();
     fs.stat(this.value(), function (err, stat) {
         if (err) {
-            promise.reject("Unknown error: " + err);
+            deferred.resolver.reject("Unknown error: " + err);
         }
 
         if (stat.size > 1024) {
-            promise.reject(self.value() + " (" + self.signature + ") was larger than 1MB");
+            deferred.resolver.reject(self.value() + " (" + self.signature + ") was larger than 1MB");
         } else {
-            promise.resolve();
+            deferred.resolver.resolve();
         }
     });
-    return promise;
+    return deferred.promise;
 });</code></pre>
   <p>
     Given <kbd>--myopt /path/to/file</kbd> and the file is larger than 1MB,

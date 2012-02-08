@@ -19,7 +19,7 @@
     running <a href="/buster-capture-server/">buster-capture-server</a>.
   </p>
   <h3 id="createSession" data-title="+createSession(config);+">
-    <code>var <a href="/buster-promise/">promise</a> = client.createSession(<a href="#options">options</a>);</code>
+    <code>var promise = client.createSession(<a href="#options">options</a>);</code>
   </h3>
   <p>
     Creates and runs a new session on the server. The provided resource set
@@ -47,14 +47,14 @@ client.createSession(sessionConfig).then(function (<a href="/buster-client/sessi
     // Use session
 });</code></pre>
   <h3 id="getCachedResources" data-title="+getCachedResources();+">
-    <code>var <a href="/buster-promise/">promise</a> = client.getCachedResources();</code>
+    <code>var promise = client.getCachedResources();</code>
   </h3>
   <p>
     Fetches a list of resources cached on the server. These can optionally be
     reused if their content has not changed. The returned promise is resolved
     with a <a href="#cachedResources"><code>cachedResources</code></a> object when ready.
   </p>
-  <h3 id="useCachedResources" data-title="+useCachedResources(config);+"><code>var <a href="/buster-promise/">promise</a> = client.useCachedResources(<a href="/buster-client/session-config/#formatted-session-config">config</a>);</code></h3>
+  <h3 id="useCachedResources" data-title="+useCachedResources(config);+"><code>var promise = client.useCachedResources(<a href="/buster-client/session-config/#formatted-session-config">config</a>);</code></h3>
   <p>
     Tweak the session configuration to use cached resources where possible.
   </p>

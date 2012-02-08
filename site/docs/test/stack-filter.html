@@ -41,8 +41,6 @@
   'at asyncFunction (/home/christian/buster/node_modules/buster-test/lib/buster-test/runner.js:79:21)' +
   'at Object.runTestFunction (/home/christian/buster/node_modules/buster-test/lib/buster-test/runner.js:312:26)' +
   'at /home/christian/buster/node_modules/buster-core/lib/buster-core.js:45:31' +
-  'at runOne (/home/christian/buster/node_modules/buster-promise/lib/buster-promise.js:89:35)' +
-  'at Array.0 (/home/christian/buster/node_modules/buster-promise/lib/buster-promise.js:75:47)' +
   'at EventEmitter._tickCallback (node.js:108:26)';</code></pre>
     <p><code>stackFilter</code> would reduce it like so:</p>
     <pre><code>var lines = buster.stackFilter(stack, "/home/christian/buster");
