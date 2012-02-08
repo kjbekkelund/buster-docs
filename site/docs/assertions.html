@@ -3,7 +3,7 @@
 <h1>Assertions</h1>
 <dl>
   <dt>Version</dt>
-  <dd>0.8.1 <span class="date">(2011-12-04)</span>
+  <dd>0.9.0 <span class="date">(2012-02-09)</span>
   </dd>
   <dt>Module</dt>
   <dd><code>require("buster-assertions");</code></dd>
@@ -101,7 +101,7 @@ try {
     aliased <code>buster.assertions.assert</code> as such:
   </p>
   <pre><code>var assert = buster.assertions.assert;</code></pre>
-  <h3 id="assert" data-title="+assert(actual[, msg])+"><code>assert(actual[, message]);</code></h3>
+  <h3 id="assert" data-title="+assert(actual[, message])+"><code>assert(actual[, message]);</code></h3>
   <p>
     Fails if <code>actual</code> is falsy
     (<code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>,
@@ -114,7 +114,7 @@ assert(null, "This will fail"); // Fails with custom message
 assert(null); // Fails
 assert(34);   // Passes
 </code></pre>
-  <h3 id="assert-same" data-title="+same(expected, actual)+"><code>assert.same(expected, actual)</code></h3>
+  <h3 id="assert-same" data-title="+same(expected, actual[, message])+"><code>assert.same(expected, actual[, message])</code></h3>
   <p>
     Fails if <code>actual</code> <strong>is not</strong> the same object
     (<code>===</code>) as <code>expected</code>. To compare similar
@@ -137,7 +137,7 @@ assert.same(obj, { id: 42, name: "Chris" }); // Fails</code></pre>
       <dd>The expected object</dd>
     </dl>
   </div>
-  <h3 id="assert-equals" data-title="+equals(actual, expected)+"><code>assert.equals(actual, expected)</code></h3>
+  <h3 id="assert-equals" data-title="+equals(actual, expected[, message])+"><code>assert.equals(actual, expected[, message])</code></h3>
   <p>
     Compares <code>actual</code> to <code>expected</code> property by
     property. If the property count does not match, or if any
@@ -169,7 +169,7 @@ assert.equals({ name: "Professor Chaos" }, { name: "Dr Evil" });         // Fail
       <dd>The expected object</dd>
     </dl>
   </div>
-  <h3 data-title="+typeOf(object, expected)+" id="assert-typeOf"><code>assert.typeOf(object, expected)</code></h3>
+  <h3 data-title="+typeOf(object, expected[, message])+" id="assert-typeOf"><code>assert.typeOf(object, expected[, message])</code></h3>
   <p>
     Fails if <code>typeof object</code> is not <code>expected</code>.
     The optional message is prepended to the failure message if
@@ -190,7 +190,7 @@ assert.typeOf(null, "function"); // Fails</code></pre>
       <dd><code>typeof object</code></dd>
     </dl>
   </div>
-  <h3 data-title="+defined(object)+" id="assert-defined"><code>assert.defined(object)</code></h3>
+  <h3 data-title="+defined(object[, message])+" id="assert-defined"><code>assert.defined(object[, message])</code></h3>
   <p>
     Fails if <code>object</code> is <code>undefined</code>. The
     optional message is prepended to the failure message if provided.
@@ -202,7 +202,7 @@ assert.defined(a); // Fails</code></pre>
     <h4>Message</h4>
     <p><code>assert.defined.message = "Expected to be defined";</code></p>
   </div>
-  <h3 data-title="+isNull(object)+" id="assert-isNull"><code>assert.isNull(object)</code></h3>
+  <h3 data-title="+isNull(object[, message])+" id="assert-isNull"><code>assert.isNull(object[, message])</code></h3>
   <p>
     Fails if <code>object</code> is not <code>null</code>. The optional
     message is prepended to the failure message if provided.
@@ -219,7 +219,7 @@ assert.isNull({});   // Fails</code></pre>
       <dd>The actual object</dd>
     </dl>
   </div>
-  <h3 data-title="+match(actual, matcher)+" id="assert-match"><code>assert.match(actual, matcher)</code></h3>
+  <h3 data-title="+match(actual, matcher[, message])+" id="assert-match"><code>assert.match(actual, matcher[, message])</code></h3>
   <p>
     Fails if <code>matcher</code> is not a partial match
     for <code>actual</code>. Accepts a wide range of input combinations.
@@ -367,7 +367,7 @@ assert.match(el, {
       <dd>The expected object</dd>
     </dl>
   </div>
-  <h3 data-title="+isObject(object)+" id="assert-isObject"><code>assert.isObject(object)</code></h3>
+  <h3 data-title="+isObject(object[, message])+" id="assert-isObject"><code>assert.isObject(object[, message])</code></h3>
   <p>
     Fails if <code>object</code> is not an object or if it
     is <code>null</code>.
@@ -386,7 +386,7 @@ assert.isObject(function () {}); // Fails</code></pre>
       <dd><code>typeof object</code></dd>
     </dl>
   </div>
-  <h3 data-title="+isFunction(object)+" id="assert-isFunction"><code>assert.isFunction(actual)</code></h3>
+  <h3 data-title="+isFunction(object[, message])+" id="assert-isFunction"><code>assert.isFunction(actual[, message])</code></h3>
   <p>
     Fails if <code>actual</code> is not a function.
   </p>
@@ -446,7 +446,7 @@ assert.exception(function () {}, "TypeError");</code></pre>
       <dd>The exception message</dd>
     </dl>
   </div>
-  <h3 data-title="+tagName(element, tagName)+" id="assert-tagName"><code>assert.tagName(element, tagName)</code></h3>
+  <h3 data-title="+tagName(element, tagName[, message])+" id="assert-tagName"><code>assert.tagName(element, tagName[, message])</code></h3>
   <p>
     Fails if the <code>element</code> either does not specify
     a <code>tagName</code> property, or if its value is not a
@@ -473,7 +473,7 @@ assert.tagName(document.createElement("p"), "li");  // Fails</code></pre>
       </dd>
     </dl>
   </div>
-  <h3 data-title="+className(element, tagName)+" id="assert-className"><code>assert.className(element, className)</code></h3>
+  <h3 data-title="+className(element, tagName[, message])+" id="assert-className"><code>assert.className(element, className[, message])</code></h3>
   <p>
     Fails if the <code>element</code> either does not specify
     a <code>className</code> property, or if its value is not a
@@ -518,7 +518,7 @@ assert.className(el, ["item", "feed"]); // Passes</code></pre>
     <strong>buster-assertions</strong>. This only matters if you use
     this package stand-alone.
   </p>
-  <h3 data-title="+called(spy)+" id="assert-called"><code>assert.called(spy)</code></h3>
+  <h3 data-title="+called(spy[, message])+" id="assert-called"><code>assert.called(spy[, message])</code></h3>
   <p>
     Fails if the spy has never been called.
   </p>
@@ -718,7 +718,7 @@ assert.calledOnceWith(spy, 42, 13); // Fails</code></pre>
     aliased <code>buster.assertions.refute</code> as such:
   </p>
   <pre><code>var refute = buster.assertions.refute;</code></pre>
-  <h3 id="refute" data-title="+refute(actual[, msg])+"><code>refute(actual[, message]);</code></h3>
+  <h3 id="refute" data-title="+refute(actual[, message])+"><code>refute(actual[, message]);</code></h3>
   <p>
     Fails if <code>actual</code> is truthy. Fails with either the
     provided message or "Expected null to be falsy". This behavior
@@ -730,7 +730,7 @@ refute(null, "This will pass");
 refute(null); // Passes
 refute(34);   // Fails
 </code></pre>
-  <h3 id="refute-same" data-title="+same(expected, actual)+"><code>refute.same(expected, actual)</code></h3>
+  <h3 id="refute-same" data-title="+same(expected, actual[, message])+"><code>refute.same(expected, actual[, message])</code></h3>
   <p>
     Fails if <code>actual</code> <strong>is</strong> the same object
     (<code>===</code>) as <code>expected</code>. To compare similar
@@ -752,7 +752,7 @@ refute.same(obj, obj);                       // Fails</code></pre>
       <dd>The expected object</dd>
     </dl>
   </div>
-  <h3 id="refute-equals" data-title="+equals(actual, expected)+"><code>refute.equals(actual, expected)</code></h3>
+  <h3 id="refute-equals" data-title="+equals(actual, expected[, message])+"><code>refute.equals(actual, expected[, message])</code></h3>
   <p>
     Passes in any case where <a href="#assert-equals"><code>assert.equals</code></a> fails.
     The optional message is prepended to the failure message if provided.
@@ -770,7 +770,7 @@ refute.equals({ name: "Professor Chaos" }, { name: "Professor Chaos" });// Fails
       <dd>The expected object</dd>
     </dl>
   </div>
-  <h3 data-title="+typeOf(object, expected)+" id="refute-typeOf"><code>refute.typeOf(object, expected)</code></h3>
+  <h3 data-title="+typeOf(object, expected[, message])+" id="refute-typeOf"><code>refute.typeOf(object, expected[, message])</code></h3>
   <p>
     Fails if <code>typeof object</code> is <code>expected</code>. The
     optional message is prepended to the failure message if provided.
@@ -787,7 +787,7 @@ refute.typeOf({}, "object");     // Fails</code></pre>
       <dd>The expected type, a string</dd>
     </dl>
   </div>
-  <h3 data-title="+defined(object)+" id="refute-defined"><code>refute.defined(object)</code></h3>
+  <h3 data-title="+defined(object[, message])+" id="refute-defined"><code>refute.defined(object[, message])</code></h3>
   <p>
     Fails if <code>object</code> is not <code>undefined</code>. The
     optional message is prepended to the failure message if provided.
@@ -808,7 +808,7 @@ refute.defined({});        // Fails</code></pre>
       <dd><code>typeof object</code></dd>
     </dl>
   </div>
-  <h3 data-title="+isNull(object)+" id="refute-isNull"><code>refute.isNull(object)</code></h3>
+  <h3 data-title="+isNull(object[, message])+" id="refute-isNull"><code>refute.isNull(object[, message])</code></h3>
   <p>
     Fails if <code>object</code> is <code>null</code>. The optional
     message is prepended to the failure message if provided.
@@ -819,7 +819,7 @@ refute.isNull(null); // Fails</code></pre>
     <h4>Message</h4>
     <p><code>refute.isNull.message = "Expected not to be null";</code></p>
   </div>
-  <h3 data-title="+match(actual, pattern)+" id="refute-match"><code>refute.match(actual, pattern)</code></h3>
+  <h3 data-title="+match(actual, pattern[, message])+" id="refute-match"><code>refute.match(actual, pattern[, message])</code></h3>
   <p>
     Fails in cases where <a href="#assert-match">assert.match</a>
     passes.
@@ -846,7 +846,7 @@ refute.isNull(null); // Fails</code></pre>
       <dd>The expected object</dd>
     </dl>
   </div>
-  <h3 data-title="+isObject(object)+" id="refute-isObject"><code>refute.isObject(object)</code></h3>
+  <h3 data-title="+isObject(object[, message])+" id="refute-isObject"><code>refute.isObject(object[, message])</code></h3>
   <p>
     Fails if <code>object</code> is a non-null object.
   </p>
@@ -864,7 +864,7 @@ refute.isObject(function () {}); // Passes</code></pre>
       <dd><code>typeof object</code></dd>
     </dl>
   </div>
-  <h3 data-title="+isFunction(object)+" id="refute-isFunction"><code>refute.isFunction(actual)</code></h3>
+  <h3 data-title="+isFunction(object[, message])+" id="refute-isFunction"><code>refute.isFunction(actual[, message])</code></h3>
   <p>
     Fails if <code>actual</code> is a function.
   </p>
@@ -902,7 +902,7 @@ refute.exception(function () {
       <dd>The exception message</dd>
     </dl>
   </div>
-  <h3 data-title="+tagName(element, tagName)+" id="refute-tagName"><code>refute.tagName(element, tagName)</code></h3>
+  <h3 data-title="+tagName(element, tagName[, message])+" id="refute-tagName"><code>refute.tagName(element, tagName[, message])</code></h3>
   <p>
     Fails if the <code>element</code> either does not specify
     a <code>tagName</code> property, or if its value <strong>is</strong> a
@@ -927,7 +927,7 @@ refute.tagName(document.createElement("p"), "p");   // Fails</code></pre>
       </dd>
     </dl>
   </div>
-  <h3 data-title="+className(element, className)+" id="refute-className"><code>refute.className(element, className)</code></h3>
+  <h3 data-title="+className(element, className[, message])+" id="refute-className"><code>refute.className(element, className[, message])</code></h3>
   <p>
     Fails if the <code>element</code> either does not specify
     a <code>className</code> property, or if its value <strong>is</strong>
