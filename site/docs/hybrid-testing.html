@@ -1,0 +1,53 @@
+<h1>Hybrid testing</h1>
+<p class="warning">
+  Note: this document is work in progress
+</p>
+<p>
+  Running tests in both browsers and Node requires a small feature test to
+  determine whether or not to load Buster in your tests. The code under test
+  obviously also needs to check for <code>module</code>, <code>require</code>
+  etc. The following example shows a typical test that runs both in browsers
+  and on node:
+</p>
+<pre><code>if (typeof module == "object" && typeof require == "function") {
+    var buster = require("buster");
+}
+
+buster.testCase("Multi-environment", {
+    "runs in all environments": function () {
+        assert(true);
+    },
+
+    "sub context": {
+        requiresSupportFor: { "DOM": typeof document != "undefined" },
+
+        "only runs in browser-like environments": function () {
+            // ...
+        }
+    }
+});</code></pre>
+<h2>Running tests</h2>
+<p>
+  The simplest way to run multi-environment tests is to use a configuration file
+  and the <code>buster test</code> binary:
+</p>
+<pre><code>var config = module.exports;
+
+config["Tests"] = {
+    tests: ["test/**/*.js"]
+};
+
+config["Browser tests"] = {
+    extends: "Tests",
+    environment: "browser",
+    sources: ["lib**/*.js"]
+};
+
+config["Node tests"] = {
+    extends: "Tests",
+    environment: "node"
+};</code></pre>
+<p>
+  Given this config, you can run for Node using <code>buster test --node</code>
+  and for browsers <code>buster test --browser</code>.
+</p>
