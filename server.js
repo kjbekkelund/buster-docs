@@ -21,7 +21,7 @@ function serveTemplate(path, pathname, res) {
     if (pathname.slice(pathname.length - 1) == "/") {
         res.writeHead(200, {"Content-Type": "text/html"});
         fs.readFile(path, function (err, data) {
-            res.write(renderTemplate(data.toString("utf8")));
+            res.write(renderTemplate(pathname, data.toString("utf8")));
         res.end();
         });
     } else {
@@ -30,8 +30,19 @@ function serveTemplate(path, pathname, res) {
     }
 }
 
-function renderTemplate(content) {
-    return ejs.render(LAYOUT, {content: content});
+function renderTemplate(pathname, content) {
+    var menu = [
+        {href: "/", text: "Home"},
+        {href: "/docs/", text: "Documentation", matcher: /^\/docs/},
+        {href: "/community/", text: "Community"}
+    ];
+
+    menu.forEach(function (item) {
+        var current = item.matcher ? item.matcher.test(pathname) : pathname == item.href;
+        if (current) item.className = "active";
+    });
+
+    return ejs.render(LAYOUT, {content: content, menu: menu});
 }
 
 function notFound(res) {
