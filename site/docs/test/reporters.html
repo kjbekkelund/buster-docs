@@ -230,7 +230,7 @@ proxy.listen(runner);
 var reporter = buster.reporters.xml.create();
 reporter.listen(proxy);</code></pre>
     <h3 id="json-proxy-create" data-title="+create(emitter)+">
-      <code>create([<a href="/buster-event-emitter/">emitter</a>])</code>
+      <code>create([<a href="/docs/event-emitter/">emitter</a>])</code>
     </h3>
     <p>
       Create an instance. You can optionally provide an event emitter to emit
@@ -271,7 +271,7 @@ reporter.listen(proxy);</code></pre>
     </h4>
     <p>
       This method allows you to listen to events of interest on the test
-      runner. The built-in reporters typically use <a href="/buster-event-emitter/#bind"><code>bind</code></a>, but you are completely free to implement this the
+      runner. The built-in reporters typically use <a href="/docs/event-emitter/#bind"><code>bind</code></a>, but you are completely free to implement this the
       way you feel best. See <a href="/docs/test/runner/#events">test runner events</a>
       for available events.
     </p>

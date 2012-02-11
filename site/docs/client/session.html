@@ -1,7 +1,7 @@
 <h1><code>buster.session</code></h1>
 <dl>
   <dt>Version</dt>
-  <dd>See <a href="/buster-client/">buster-client</a></dd>
+  <dd>See <a href="/docs/client/">buster-client</a></dd>
   <dt>Module</dt>
   <dd><code>require("buster-client").session;</code></dd>
   <dt>In browsers</dt>
@@ -9,9 +9,9 @@
 </dl>
 <p>
   The client of a
-  connected <a href="/buster-capture-server/">buster-capture-server</a>
+  connected <a href="/docs/capture-server/">buster-capture-server</a>
   session. If you are looking to create a session, you are most likely looking
-  for <a href="/buster-client/client/#createSession"><code>buster.client.createSession(config)</code></a>.
+  for <a href="/docs/client/client/#createSession"><code>buster.client.createSession(config)</code></a>.
 </p>
 <p>
   The session can be used to communicate with captured clients through messaging
@@ -24,13 +24,13 @@
   <h3 id="on"><code>on(event, callback);</code></h3>
   <p>
     Subscribe to messages sent from any client. See
-    <a href="/buster-multicast/#on"><code>buster.multicast.on</code></a> for
+    <a href="/docs/multicast/#on"><code>buster.multicast.on</code></a> for
     details.
   </p>
   <h3 id="emit"><code>emit(event, data);</code></h3>
   <p>
     Send a message to all clients. See
-    <a href="/buster-multicast/#on"><code>buster.multicast.emit</code></a> for
+    <a href="/docs/multicast/#on"><code>buster.multicast.emit</code></a> for
     details.
   </p>
   <h3 id="close" data-title="+close();+"><code>var promise = session.close();</code></h3>
@@ -42,7 +42,7 @@
   <p>
     Create a new session instance. The session is assumed to already be
     registered on the
-    server. See <a href="/buster-client/client/#createSession"><code>buster.client.createSession(config)</code></a>.
+    server. See <a href="/docs/client/client/#createSession"><code>buster.client.createSession(config)</code></a>.
   </p>
   <h3 id="connect"><code>connect();</code></h3>
   <p>
@@ -85,7 +85,7 @@
     </dd>
     <dt><code>multicast</code></dt>
     <dd>
-      <a href="/buster-multicast/">Multicasting</a> options. Should contain two
+      <a href="/docs/multicast/">Multicasting</a> options. Should contain two
       properties, <code>path</code> and <code>id</code>. Should be retrieved
       from the server when the session is created remotely.
     </dd>
